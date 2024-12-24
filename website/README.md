@@ -1,2 +1,3 @@
 For live site, see:
-https://pingstanton.com/nypdsqf/#comparisons
+https://pingstanton.com/nypdsqf/
+
