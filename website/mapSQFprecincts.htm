@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NYPD Precinct Stop, Question, and Frisk Counts</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { width: 100%; height: 100vh;}
+</style>
+</head>
+<body>
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.css" type="text/css">
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicGluZ3N0YW50b24iLCJhIjoiY2x2dWRmdTNpMDh6ZDJqbzBwMTJwcmpidyJ9.Ee_PLanOTtrTj0i-dfjnzw';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-73.980,40.7130], 
+            zoom: 11 
+        });
+
+        const popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: true
+        });
+
+
+  map.on('load', () => {
+    map.addSource('source1', {
+        type: 'geojson',
+        data: 'nycprecincts.geojson'
+    });
+
+    map.addSource('source2', {
+        type: 'geojson',
+        data: 'censustracts2020a.geojson'
+    });
+
+    map.addLayer({
+       id: 'nypdboundaries',
+        type: 'line', 
+        source: 'source1',
+        paint: {
+            'line-color': '#0000ff',
+            'line-width': 3,
+			'line-opacity': 1
+        }
+    });
+
+    map.addLayer({
+        id: 'nyc-censustracts-boundaries',
+        type: 'line', 
+        source: 'source2',
+        paint: {
+            'line-color': '#333333',
+            'line-width': 3,
+			'line-opacity': 0.2
+        }
+    });
+
+ 	map.addLayer({
+		id: 'nypdfill',
+        type: 'fill',
+        source: 'source1',
+		paint: {
+            'fill-color': '#0000ff',
+            'fill-opacity': [
+               'match',
+               	['get', 'policePrecinct'],
+	
+					'1', 0.1,
+					'5', 0.2,
+					'6', 0.2,
+					'7', 0.3,
+					'9', 0.2,
+					'10', 0.2,
+					'13', 0.1,
+					'14', 0.8,
+					'17', 0.1,
+					'18', 0.2,
+					'19', 0.1,
+					'20', 0.3,
+					'22', 0.1,
+					'23', 0.8,
+					'24', 0.2,
+					'25', 0.9,
+					'26', 0.2,
+					'28', 0.4,
+					'30', 0.4,
+					'32', 0.8,
+					'33', 0.3,
+					'34', 0.3,
+					'40', 0.8,
+					'41', 0.6,
+					'42', 0.5,
+					'43', 0.3,
+					'44', 0.4,
+					'45', 0.2,
+					'46', 0.4,
+					'47', 0.3,
+					'48', 0.2,
+					'49', 0.4,
+					'50', 0.1,
+					'52', 0.3,
+					'60', 0.5,
+					'61', 0.3,
+					'62', 0.2,
+					'63', 0.2,
+					'66', 0.1,
+					'67', 0.4,
+					'68', 0.1,
+					'69', 0.4,
+					'70', 0.3,
+					'71', 0.3,
+					'72', 0.2,
+					'73', 0.8,
+					'75', 0.6,
+					'76', 0.8,
+					'77', 0.5,
+					'78', 0.2,
+					'79', 0.5,
+					'81', 0.7,
+					'83', 0.3,
+					'84', 0.3,
+					'88', 0.5,
+					'90', 0.3,
+					'94', 0.2,
+					'100', 0.6,
+					'101', 0.8,
+					'102', 0.3,
+					'103', 0.6,
+					'104', 0.2,
+					'105', 0.3,
+					'106', 0.3,
+					'107', 0.2,
+					'108', 0.2,
+					'109', 0.3,
+					'110', 0.3,
+					'111', 0.3,
+					'112', 0.3,
+					'113', 0.3,
+					'114', 0.2,
+					'115', 0.4,
+					'120', 0.7,
+					'121', 0,
+					'122', 0.3,
+					'123', 0.1,
+                    0.1
+                ]
+            }
+            });
+         
+
+   map.addLayer({
+        id: 'police-precinct-labels',
+        type: 'symbol',
+        source: 'source1',
+        layout: {
+            'text-field': ['get', 'policePrecinct'], 
+            'text-size': 18,
+            'text-anchor': 'center'
+        },
+        paint: {
+            'text-color': '#0000ff',
+            'text-halo-color': '#fff',
+            'text-halo-width': 2
+        }
+    });
+            map.on('dblclick', 'nyc-censustracts-fill', function(e) {
+				/* popover info, SET TO DOUBLECLICK */		
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ['nyc-censustracts-fill']
+                });
+
+                if (features.length > 0) {
+                    const feature = features[0];
+                    const tract = feature.properties.CT2020; 
+                    const boro = feature.properties.BoroName; 
+                    const ntaname = feature.properties.NTAName; 
+                    const cdtname = feature.properties.CDTANAME;
+                    const geoid = feature.properties.GEOID;
+
+                    popup.setLngLat(e.lngLat)
+                        .setHTML(`<strong>GEOID: </strong>${geoid}<br /><strong>boro: </strong>${boro}<br /><strong>census tract: </strong>${tract}<br /><strong>ntaname tract: </strong>${ntaname}<br /><strong>cdtname tract: </strong>${cdtname}`)
+                        .addTo(map);
+
+                }
+            });
+
+            map.on('mouseleave', 'nyc-censustracts-fill', function() {
+                popup.remove();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Matthew StantonNYPD Precinct Outlines</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js"></script>
+<style>
+body {margin: 0; padding: 0; }
+#map {position: absolute; width: 100%; height: 100vh;}
+</style>
+</head>
+<body>
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.css" type="text/css">
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicGluZ3N0YW50b24iLCJhIjoiY2x2dWRmdTNpMDh6ZDJqbzBwMTJwcmpidyJ9.Ee_PLanOTtrTj0i-dfjnzw';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-73.980,40.7130], 
+            zoom: 11 
+        });
+
+        const popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: true
+        });
+
+
+  map.on('load', () => {
+    map.addSource('source1', {
+        type: 'geojson',
+        data: 'nycprecincts.geojson'
+    });
+
+    map.addSource('source2', {
+        type: 'geojson',
+        data: 'censustracts2020a.geojson'
+    });
+
+    map.addLayer({
+       id: 'nypdboundaries',
+        type: 'line', 
+        source: 'source1',
+        paint: {
+            'line-color': '#0000ff',
+            'line-width': 3,
+			'line-opacity': 1
+        }
+    });
+
+    map.addLayer({
+        id: 'nyc-censustracts-boundaries',
+        type: 'line', 
+        source: 'source2',
+        paint: {
+            'line-color': '#333333',
+            'line-width': 3,
+			'line-opacity': 0.5
+        }
+    });
+
+ 	map.addLayer({
+		id: 'nyc-censustracts-fill',
+        type: 'fill',
+        source: 'source2',
+		paint: {
+               'fill-color': '#ccc', 
+               'fill-opacity': 0.2 
+                }
+            });
+
+    map.addLayer({
+        id: 'nyc-censustracts-labels',
+        type: 'symbol',
+        source: 'source2',
+        layout: {
+            'text-field': ['get', 'GEOID'], 
+            'text-size': 10,
+            'text-anchor': 'center'
+        },
+        paint: {
+            'text-color': '#666',
+            'text-halo-color': '#fff',
+            'text-halo-width': 2
+        }
+    });
+         
+
+   map.addLayer({
+        id: 'police-precinct-labels',
+        type: 'symbol',
+        source: 'source1',
+        layout: {
+            'text-field': ['get', 'policePrecinct'], 
+            'text-size': 18,
+            'text-anchor': 'center'
+        },
+        paint: {
+            'text-color': '#0000ff',
+            'text-halo-color': '#fff',
+            'text-halo-width': 2
+        }
+    });
+            map.on('dblclick', 'nyc-censustracts-fill', function(e) {
+				/* popover info, SET TO DOUBLECLICK */		
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ['nyc-censustracts-fill']
+                });
+
+                if (features.length > 0) {
+                    const feature = features[0];
+                    const tract = feature.properties.CT2020; 
+                    const boro = feature.properties.BoroName; 
+                    const ntaname = feature.properties.NTAName; 
+                    const cdtname = feature.properties.CDTANAME;
+                    const geoid = feature.properties.GEOID;
+
+                    popup.setLngLat(e.lngLat)
+                        .setHTML(`<strong>GEOID: </strong>${geoid}<br /><strong>boro: </strong>${boro}<br /><strong>census tract: </strong>${tract}<br /><strong>ntaname tract: </strong>${ntaname}<br /><strong>cdtname tract: </strong>${cdtname}`)
+                        .addTo(map);
+
+                }
+            });
+
+            map.on('mouseleave', 'nyc-censustracts-fill', function() {
+                popup.remove();
+            });
+        });
+    </script>
+</body>
+</html>

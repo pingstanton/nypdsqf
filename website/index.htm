@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantifying Educational Impacts Under the NYPD's Stop-And-Frisk Era | Matthew Stanton</title>
+<title>NYPD Stop, Question, and Frisk (SQF) Analysis | PingStanton</title>
+<meta name="description" content="An analysis of the NYPD's Stop, Question, and Frisk (SQF) policy, its implications, and data-driven insights. A look at impact on communities, educational attainment, and the statistics behind this police practice." />
+<meta name="keywords" content="NYPD, Stop Question and Frisk, SQF policy, NYC policing, data analysis, educational attainment, community impact, NYPD practices, policing strategies, police accountability, racial profiling" />
+<meta property="og:title" content="NYPD Stop, Question, and Frisk (SQF) Analysis | Matthew Stanton" />
+<meta property="og:description" content="A comprehensive look at the NYPD's SQF policy, featuring in-depth data analysis, community impacts, and the broader implications of this policing strategy." />
+<meta property="og:url" content="https://pingstanton.com/nypdsqf/" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://pingstanton.com/nypdsqf/nypdsqf.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="NYPD Stop, Question, and Frisk (SQF) Analysis | Matthew Stanton" />
+<meta name="twitter:description" content="An analysis of the NYPD's SQF policy, its effects, and the data behind this policing practice." />
+<meta name="twitter:image" content="https://pingstanton.com/nypdsqf/nypdsqf.jpg" />
+<meta name="robots" content="index, follow" />
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="sqfeduc.css" />
+<style type="text/css"><!--
+
+@keyframes opacityTransition {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+--></style>
+</head>
+<body>
+<div class="hd">
+<h1>Quantifying Educational Impacts Under the&nbsp;NYPD's <nobr>Stop-And-Frisk</nobr> Era</h1>
+
+<p><strong>Matthew Stanton</strong>, Master of Science Candidate, Fall 2024<br />
+<strong>CUNY Graduate Center Data Analysis and Visualization Program</strong><br />
+<strong>Advisor:</strong> Dr. Timothy Shortell, Professor of Sociology, Brooklyn College / CUNY Graduate Center</p>
+
+<p>A master's capstone project submitted to the Graduate Faculty in Data Analysis and Visualization in partial fulfillment of the requirements for the degree of Master of Science, The City University of New York.</p>
+
+</div>
+
+<div class="toc">
+<p><a href="#intro">Introduction</a>&nbsp;| <a href="#methodology">Methodology</a></p>
+<p><a href="#history">A Brief Stop-And-Frisk History</a></p>
+<p><a href="#disparities">NYPD <nobr>Stop-And-Frisk</nobr> Disparities</a></p>
+<p><a href="#attainments">New York City Educational Attainment</a></p>
+<p><a href="#comparisons">Comparing Educational and <nobr>Stop-And-Frisk</nobr> Data</a></p>
+<p><a href="#earnings">Educational Attainment and Lifetime&nbsp;Earnings</a></p>
+<p><a href="#framework">Framework for Further Study</a></p>
+<p><a href="#appendix">Appendix: NYPD Precincts Snapshop</a></p>
+<p><a href="#citations">Citations</a>&nbsp;| 
+<a href="#datarepository">Data&nbsp;Repository</a>&nbsp;|
+<a href="#bibliography">Bibliography</a></p>
+</div>
+
+
+<div class="w1">
+
+<div class="qt">
+Did the NYPD's stop-and-frisk use directly contribute to reduced educational attainment among New York's most targeted demographics?
+</div>
+
+<a name="intro"></a>
+
+<h2>Introduction</h2>
+
+<p>Incident data shows the New York Police Department's "Stop, Question and Frisk" program, predominantly used under the name "Operation Impact" (Integrated Municipal Police Anti-Crime Teams) from 2002 to 2023, disproportionately targeted people of color and may have led to a generational loss of educational attainment and corresponding associated lifetime incomes. This project aims to identify areas, times, and demographics of people most targeted under this program and examine possibilities to quantify educational attainment impacts.</p>
+
+<p>The NYPD reports to have confronted and detained New Yorkers under the "stop-question-and-frisk" program more than 2 million times. During Michael Bloomberg's administration, the "stop-and-frisk" program reached a historic annual high of 685,724 documented stops in 2011, disproportionately targeting Black and Hispanic young men. In that year, a Hispanic man was four times as likely to be subjected to a stop by the NYPD as a white man, while a Black man was 10 times more likely to be stopped. 
+[<a href="#1">1</a>]</p>
+
+<p>That same year marked New York's highest number of resident adults over 18 lacking a high school diploma or equivalent: 1,475,319 people, or 18.6 percent of the city's adults, dropping out of further educational attainment. Data analysis in this capstone will show moderate to strong correlations along racial lines that closely match the trend lines of the NYPD's stop-and-frisk usage, but there are challenges to proving such correlation equals any degree of causation.</p> 
+
+<p>One year after these record highs, U.S. District Court Judge Shira Scheindlin ruled in <em>Floyd, et. al. v. City of New York</em> that the program had been unconstitutional, showing "significant evidence that the NYPD acted with deliberate indifference" - especially toward Black and Hispanic New Yorkers. [<a href="#2">2</a>]</p>
+
+<p>Loss of household earnings to New Yorkers has not been quantified either as a social or financial cost, a metric that would benefit understanding among affected communities, policymakers and legislators, educational institutions and advocates, social justice organizations, and those invested in resolving lingering program consequences such as legal professionals, local business leaders, and community organizers.</p>
+
+<div class="qt">
+<a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">NYPD Stop, Question, and Frisk Data&nbsp;&raquo;</a><br /><br />
+<a href="https://www.census.gov/programs-surveys/acs/data.html">American Community Survey Data&nbsp;&raquo;</a>
+</div>
+
+<a name="methodology"></a>
+
+<h2>Methodology</h2>
+
+<p>Stop-and-Frisk data from 2003 to 2022 was downloaded from <a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">New York City Police Department's Stop, Question, and Frisk Data</a> (SQF) repository on <a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">NYC.gov</a>. Populations by New York City census tracts, including age bins and highest levels of educational attainment, were drawn from the <a href="https://data.census.gov/">American Community Survey S1501 Educational Attainment</a> (ACS) 2010-2023 dataset via the <a href="https://data.census.gov/">U.S. Census</a>.</p>
+
+<p>Some cautions of note regarding this analysis:</p>
+
+<ul>
+<li> In order to compare NYPD and ACS data, tallies of individual census tract counts were combined into precinct groups. In cases where a precinct split a census tract, the tract was counted into the precinct of greatest area. Precincts with no residences (i.e. 22nd Precinct/Central Park) have been excluded from some correlations.</li>
+<li> Data from 2010 to 2019 were matched to 2020 census boundaries. In most cases, changes involved splitting the tract into two or more parts from a previous tract, not changing its associated NYPD Precinct. The major exception to this rule is found on Staten Island, where the 121st Precinct was created in 2013. For more information on tract revisions, see <a href="https://storymaps.arcgis.com/stories/d30850ba28944619b94e8ee4f746d5c4
+">2020 Census Reconfiguration of Statistical Geographies: A Guide for New York City</a> by the NYC Department of City Planning's Population Division</li>
+<li>Any data related to Queen's 116th Precinct, created in December 2024, are included in the 105th Precinct and parts of the 113th Precinct as per prior boundaries.</li>
+<li> Due to small representation in the data, stop-and-frisk tallies of racial demographics exclude individuals identifying as American Indian/Alaskan Native or Middle Eastern, or incidents where no race was listed in NYPD reports.</li>
+<li> Counts have not been normalized against changes in New York City demographics, particularly in the city's increasing median age and shrinking number of residents below the age of 18. Percentages of populations are limited to either same-year comparisons or an entire range spanning the dataset.</li>
+<li> The analysis assumes an implied association with stop-and-frisk encounters and the census tract of residence for the targeted individual. While this assumption may be true for some individuals, it is not possible to verify any personally identifiable information.</li>
+<li> Stop-and-frisk data measures incidents, not individuals, so some cases may reflect the same individual appearing in the dataset multiple times within the same year and/or precinct, or multiple years and precincts.</li>
+</ul>
+
+<p>While there may appear to be a relationship between stop-and-frisk rates and local levels of educational attainment, it is important to consider that correlation does not imply causation; other factors like income inequality or policing policies could influence these rates.</p>
+
+
+<div class="map"><h4>Map 1: Overlays of NYPD Precincts (2023), U.S. Census Tracts (2023)</h4>
+<iframe 
+    src="mapCensusTractsPrecincts.htm" 
+    width="100%" 
+    height="300" 
+    frameborder="0">
+<p><a href="mapSQFprecincts.htm" target="_blank">Click to view map &raquo;</a></p>
+</iframe>
+<p>Doubleclick to view census tract details and zoom in. <a href="mapCensusTractsPrecincts.htm" target="_blank"><strong>Click to view full map in new window&nbsp;&raquo;</strong></a></p>
+</div>
+
+<a name="history"></a>
+
+<h2>A Brief History of Stop-And-Frisk Policies</h2>
+
+<div class="qt">Terry Stops.<br />Broken Windows.<br />COMPSTAT.<br />Data-Driven Policing.<br >Impact Zones.</div>
+
+<p>The practice of confronting and briefly detaining citizens to uncover hidden contraband such as drugs and weapons had neither originated in the 21st century, nor even begun in New York. The practice of "stop, question, and frisk" became common across America following the 1968 landmark U.S. Supreme Court decision <em>Terry v. Ohio</em> that empowered police "upon the on-the-spot observations of the officer on the beat" to perform over-the-clothing pat-downs of individuals suspected of endangering others.
+[<a href="#3">3</a>]</p>
+
+<p>At the discretion of police officers, judicial approval of searches and seizures through the Fourth Amendment's warrant process of probable cause could be waived in the moment on a "case-by-case" basis. Such encounters became known as "Terry stops," so named after the man in Cleveland who became the plaintiff in the Supreme Court case.</p>
+
+<p>In a footnote within the Supreme Court's ruling, the 1955 Journal of Criminal Law and Criminology article "Searching and Disarming Criminals" by L.L. Priar and T.F. Martin was cited for its description summarizing the expected intrusion made upon those stopped in public and backed up against a wall by police: "(T)he officer must feel with sensitive fingers every portion of the prisoner's body. A thorough search must be made of the prisoner's arms and armpits, waistline and back, the groin and area about the testicles, and entire surface of the legs down to the feet."
+[<a href="#4">4</a>]</p>
+
+<p>Beyond this academic guideline, the reality of undergoing such stops in New York City often proved much more violent and unsettling. A study by Columbia University researchers noted 1 in 5 NYPD stops involved physical "use of force" in which "young men are often thrown to the ground or slammed against walls" and sometimes subjected to "racial invective or taunts about sexuality."
+[<a href="#5">5</a>]</p>
+
+<p>By the 1990s, New York City voters elected Rudy Giuliani as mayor, in part based on his promise to curb crime, improve public faith in the New York City police department, and follow a "quality of life paradigm," a variation on "broken windows theory" that favored social controls over previous rehabilitation programs. [<a href="#6">6</a>]</p>
+
+<p>William Bratton became the new NYPD Commissioner in 1994, and by April of his first year, the department launched COMPSTAT - short for Compare Stats or Computer Stats - a method to track crime statistics, identify patterns, and focus on target areas. Bratton and COMPSTAT co-creator Jack Maple led a pivot to metrics-driven policing, including the use of standardized demographic descriptions of encounters between police and the public, something that "came to signify an officer's productivity in the field." [<a href="#7">7</a>]</p>
+
+<p>"Stop, Question, and Frisk" took formal shape in January 2003 through Operation Impact and Integrated Municipal Police Anti-Crime Teams. The initiative's stated goal was to "reduce crime throughout the city by deploying more officers to high-crime hot spots, known as 'Impact Zones,'" areas NYPD Commissioner Raymond Kelly described as "isolated stubborn pockets" of urban crime.
+[<a href="#8">8</a>]</p>
+
+<p>This move happened amid the conclusion of <em>Daniels, et al. v. the City of New York</em>, a class action lawsuit begun in 1999 that alleged selective NYPD targeting of residents based on their race. The city agreed to a settlement that December. [<a href="#9">9</a>]</p>
+
+<p>Over the next decade and a half, the NYPD would continuously expand and redefine such Impact Zones every six months, primarily in precincts located in Brooklyn, Queens, and the South Bronx. Those police officers put in charge of making stop-and-frisk calls were among the least experienced on the force.</p>
+
+<p>"From the outset, roughly two-thirds of the graduating classes from the Police Academy were assigned to Impact Zones," noted one analysis of the policy. "These rookie patrolmen and patrolwomen were encouraged by supervisors to conduct high volumes of investigative stops. In addition to suspicion-based stops, officers were encouraged to make arrests for low-level offenses or issue warrants for minor non-criminal infractions (such as open containers of alcohol), and conducted other stops as pretexts to search for persons with outstanding warrants."
+[<a href="#10">10</a>]</p>
+
+<a name="disparities"></a>
+
+<h2>NYPD Stop-And-Frisk Disparities</h2>
+
+<p>Implementation of Stop, Question, and Frisk under the New York Police Department quickly rose to disproportionately target specific demographics: men, Blacks, Hispanics, and those between the ages of 18 to 34. During the program's most active tenure, almost exactly half of all stops involved people 24 years old or younger.</p>
+
+<div class="chart">
+<h3>Figure 1: NYPD Stop-And-Frisk Targeting By Race</h3>
+<img src="nypd_plot_race.svg" width="100%" alt="Line chart showing number of NYPD stop-and-frisk records by race" /><br />
+<p>Chart omits categories below minimim threshold to display, including American Indian/Alaskan Native, Middle Eastern, and incidents where no race was listed. Source: 
+<a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">NYC.gov NYPD Stop, Question and Frisk Data</a></p>
+</div>
+
+<p>A study by Stanford University, Microsoft Research, and New York University traced the racial disparity to two factors: Impact Zones being set up in predominately Black and Hispanic housing areas, and "discriminatory enforcement" by those officers tasked with choosing who to stop. Since Impact Zones were selected based on crime rates, "a consequence of the tactic is that individuals who live in high-crime areas, but who are not themselves engaged in criminal activity, bear the costs associated with being stopped."
+[<a href="#11">11</a>]</p>
+
+<p>In addition to disparities by race, the program overwhelmingly targeted males over females by 13-to-1, and especially targeted men between the ages of 18 to 24.</p> 
+
+<div class="chart">
+<h3>Figure 2: NYPD Stop-And-Frisk Targeting By Reported Sex</h3>
+<img src="nypd_plot_sex.svg" width="100%" alt="Line chart showing number of NYPD stop-and-frisk records by gender" />
+<p>Source: 
+<a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">NYC.gov NYPD Stop, Question and Frisk Data</a></p>
+</div>
+
+<div class="chart">
+<h3>Figure 3: NYPD Stop-And-Frisk Targeting By Age</h3>
+<img src="nypd_plot_age.svg" width="100%" alt="Line chart showing number of NYPD stop-and-frisk records by age bracket" />
+<p>Source: 
+<a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">NYC.gov NYPD Stop, Question and Frisk Data</a></p>
+</div>
+
+<p>Official records further illustrate how often stops came to nothing. The year 2011 saw 685,700 stop-and-frisk encounters logged by police officers, the most of any year, but only 5.96 percent of stops led to some form of criminal charge (possession of marijuana, prior outstanding warrants, or possession of a weapon). The remaining 94 percent of police stop encounters that year involved people completely innocent of any wrongdoing. This stop-to-arrest ratio went as low 25-to-1 in 2006.</p>
+
+<div class="chart">
+<h3>Figure 4: NYPD Arrests Following Stop-And-Frisk Stops</h3>
+<img src="nypd_plot_arrests.svg" width="100%" alt="Line chart showing number of NYPD stop-and-frisk arrest totals" />
+<p>Source: 
+<a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">NYC.gov NYPD Stop, Question and Frisk Data</a></p>
+</div>
+
+<p>The skew toward stop-and-frisk encounters ending without evidence of criminality was not an anomaly in law enforcement, but rather part of what Vitale characterizes as one of several core tactics in quality-of-life policing:</p>
+
+<blockquote><p>
+"Officers in New York City were told to use any pretext to stop young men on the streets who they believed might be carrying illegal drugs or weapons and to search them. The legalities of the search were sometimes questionable, but consistent with the 'broken windows' theory, the emphasis was on establishing a new standard of behavior rather than making arrests that would necessarily end in successful prosecutions."[<a href="#12">12</a>]</p>
+</blockquote>
+
+<p>The institutional practice of high-frequency stops within these Impact Zones created a halo effect among the entire community. As researchers from the John Jay College of Criminal Justice and Center for Policing Equity in New York put it: "Indeed, even in the absence of an encounter, Black pedestrians and drivers live with the accumulated knowledge (acquired from both direct experience and observation) that investigative stops are an ever‐present threat; and one that cannot be reliably avoided simply by following the law." 
+[<a href="#13">13</a>]</p>
+
+<a name="attainments"></a>
+
+<h2>New York City Educational Attainment Benchmarks</h2>
+
+<p>Measurements on the highest levels of educational attainment were available from the <a href="https://data.census.gov/">American Community Survey's S1501 Educational Attainment 2010-2023 data</a>. Since the suspension of most NYPD stop-and-frisk practices a decade ago, both the number and percentage of New York City residents between the ages of 18 to 25 with a top educational attainment level below a high school diploma has steadily decreased.</p>
+
+<div class="chart">
+<h3>Figure 5: Highest Level of Educational Attainment, New Yorkers Ages 18 to 24</h3>
+<img src="edu_plot_attainments.svg" width="100%" alt="Line chart showing number of New Yorkers by level of highest Educational Attainment" />
+<p>Source: 
+<a href="https://data.census.gov/">American Community Survey</a></p>
+</div>
+
+<p>Educational attainment remains unevenly divided across New York City due to socioeconomic, cultural, environmental, and systemic factors. Using census tracts as a base for comparison, the map below illustrates areas where a significant number of local residents have less than a high school diploma (or equivalent).</p>
+
+<div class="map"><h4>Map 2: Areas of Lower Educational Attainment, Adults (Ages 18 and older)</h4>
+<iframe 
+    src="mapTractsHS.htm" 
+    width="100%" 
+    height="500" 
+    frameborder="0">
+<p><a href="mapSQFprecincts.htm" target="_blank">Click to view map &raquo;</a></p>
+</iframe>
+<p><strong>KEY:</strong> 0% <img src="barF00.png" class="gradient" width="70%" height="20" alt="Gradient Key" />80%<br />
+Source: 2022 ACS data. <a href="mapTractsHS.htm" target="_blank"><strong>Click to view full map in new window&nbsp;&raquo;</strong></a></p>
+</div>
+
+<p>Note that population density and demographic differences between neighborhoods confound the relationship between educational attainment and stop-and-frisk incidents, requiring further controls in the analysis.</p>
+
+<p>In terms of experiencing a stop-and-frisk encounter before the age of 25, White and Asian young people of both sexes showed very weak or no correlation to their graduation from high school. The impacts are shown to be very different for Hispanic and Black people under 25: For every two to three stops, trends show one Hispanic youth tends to not graduate high school, with about 5% greater chance among males over females. Among Blacks, the trend is closer to eight stops per person below a high school diploma, with both sexes affected equally.</p>
+
+<p>As stated earlier, such correlations cannot be taken as an indication of causation, but the trend appears consistent.</p>
+
+<div class="qt">
+Precincts with the most stop-and-frisk encounters also had among the lowest educational attainment levels.
+</div>
+
+<a name="comparisons"></a>
+
+<h2>Comparing Educational and Stop-And-Frisk Data</h2>
+
+<p>The focus of stop-and-frisk use on "impact zones" led to far more encounters in some neighborhoods than others, often at the discretion of the local precinct's commanding officer. In many cases, a change in precinct-level leadership drove a substantial change in the frequency of stop-and-frisk encounters. The map at right links to an illustration of differences regarding stops involving subjects between the ages of 18 and 25.</p>
+
+<p>Of particular note is the case of Brooklyn's 75th Precinct under the command of Jeffrey Maddrey, under whose tenure the policy posted its highest number of stops between 2010 to 2012. Maddrey had previously driven stop-and-frisk numbers as the commanding officer of Brownsville's 73rd Precinct from January 2006 before moving to his post in East New York in January 2009. In each precinct, stops rose dramatically under Maddrey and dropped when he changed posts. The trend is not academic, as Mayor Eric Adams went on to appoint Maddrey as the NYPD Chief of Department in December of 2022, overseeing all of the city's policing policies at the end of a year that saw SQF use almost double.</p>
+
+<div class="map"><h4>Map 3: Ratio of SQF Stops-to-Local Populations Age 18 to 24 (2003-2022)</h4>
+<iframe 
+    src="mapSQFprecincts.htm" 
+    width="100%" 
+    height="500" 
+    frameborder="0">
+<p><a href="mapSQFprecincts.htm" target="_blank">Click to view map &raquo;</a></p>
+</iframe>
+<p><strong>KEY:</strong> 1:10 <img src="bar00F.png" class="gradient" width="70%" height="20" alt="Gradient Key" /> 1:3<br />
+Source: NYPD and ACS data. <a href="mapSQFprecincts.htm" target="_blank"><strong>Click to view full map in new window&nbsp;&raquo;</strong></a></p>
+</div>
+
+<p>Education data from census tracts (2010, 2020 boundaries) were grouped into precincts (defined by 2023 boundaries). As previously noted, this creates an inconsistency on Staten Island, where the 121st Precinct was created in 2013, but broad comparisons fit elsewhere. In cases where a census tract was split by a precinct boundary, data for the entire tract was grouped into the precinct of greatest area.</p>
+
+<p>The top 10 precincts with the highest number of reported stop-and-frisk encounters between 2003 to 2022 also show high rates of 18- to 24-year-old individuals with lower educational attainment levels.</p>
+
+<h3>Top 10 Highest Stop-and-Frisk NYPD Precincts (2003-2022)</h3>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th width="25%">PRECINCT</th>
+<th width="55%">NEIGHBORHOODS</th>
+<th width="10%">NUM.&nbsp;SQF STOPS</th>
+<th width="10%">LOW EDUC. ATTAINMENT</th>
+</tr>
+<tr><td><strong>75th Precinct</strong></td><td>Brooklyn: East New York and Cypress Hills</td><td>93,220</td><td>21%</td></tr>
+<tr><td><strong>73rd Precinct</strong></td><td>Brooklyn: Brownsville and Ocean Hill</td><td>77,549</td><td>24%</td></tr>
+<tr><td><strong>40th Precinct</strong></td><td>Bronx: Port Morris, Mott Haven, and Melrose</td><td>61,804</td><td>29%</td></tr>
+<tr><td><strong>120th Precinct</strong></td><td>Staten Island: North Shore</td><td>55,329</td><td>17%</td></tr>
+<tr><td><strong>79th Precinct</strong></td><td>Brooklyn: Bedford Stuyvesant</td><td>53,960</td><td>15%</td></tr>
+<tr><td><strong>103th Precinct</strong></td><td>Queens: Hollis, Lakewood, and Jamaica</td><td>53,157</td><td>18%</td></tr>
+<tr><td><strong>23th Precinct</strong></td><td>Manhattan:  East Harlem/El Barrio</td><td>52,640</td><td>20%</td></tr>
+<tr><td><strong>44th Precinct</strong></td><td>Bronx: Southwest, Yankee Stadium</td><td>51,908</td><td>27%</td></tr>
+<tr><td><strong>43rd Precinct</strong></td><td>Bronx: Westchester Avenue, Castle Hill Avenue, White Plains Road, and Parkchester</td><td>45,032</td><td>26%</td></tr>
+<tr><td><strong>67th Precinct</strong></td><td>Brooklyn: East Flatbush and Remsen Village</td><td>43,639</td><td>14%</td></tr>
+<tr><td><strong><em>AVERAGE</em></strong></td><td>All precincts</td><td><strong><em>28,009</em></strong></td><td><strong><em>15%</em></strong></td></tr>
+</table>
+
+<p><small><strong>NUM. SQF STOPS:</strong> Total number of recorded Stop, Question, and Frisk encounters between 2003 to 2022.<br />
+<strong>LOW EDUC. ATTAINMENT:</strong> Percentage of residents age 18 to 25 with a maximum educational attainment level below a high school diploma (or equivalent).</small></p>
+
+<p><small>Source: New York City Police, NYC.gov, ACS</small></p>
+
+
+<p>The correlation may reflect a vicious circle: Limited opportunities due to lower educational attainment may increase crime rates, which in turn prompt "impact zone" policies such as stop-and-frisk, which in turn alienate communities from further pursuit of education.</p>
+
+<p>Such broad visualizations are in line with conclusions made by Legewie and Fagan: "The findings show that Operation Impact lowered the educational performance of African-American boys, with implications for child development, economic mobility and racial inequality." 
+[<a href="#14">14</a>]</p>
+
+<p>Furthermore, they note "direct police contact such as pedestrian stops, police harassment or arrests can erode trust in state institutions, lead to system avoidance and induce stress or other health problems, which in turn reduce educational performance."
+[<a href="#15">15</a>]</p>
+
+<p>In a later paper by Fagan, working with Dr. Amanda Geller of the University of California, Irvine, the pair characterized resulting distrust of institutions such as police and schools as "legal cynicism." [<a href="#16">16</a>] The pair used data from Princeton University's Fragile Families & Child Wellbeing Study tracking children born between 1998 to 2000 from nearly 5,000 couples in 20 major cities, including youth coming of age as teens in New York City under the era of "stop-and-frisk" policing. 
+[<a href="#17">17</a>]
+
+<p>Regardless of ever having been personally stopped by police, the overall message to this generation was clearly shared: "Minority (specifically, black, Hispanic, and multiracial) teens report significantly more legal cynicism than their white counterparts, net of racial differences in their reported personal and vicarious police experiences."
+[<a href="#18">18</a>]</p>
+
+<a name="earnings"></a>
+
+<div class="qt">
+Opportunity costs matter.
+</div>
+
+<h2>Projected Impacts On Educational Attainment Levels and Lifetime Household Earnings</h2>
+
+<p>In 2019, Harvard University's Joscha Legewie and Columbia Law School's Jeffery Fagan built statistical regression models to compare New York State's English Language Arts (ELA) and Mathematics test scores from students grades 3 through 8 who lived in neighborhoods designated for Operation Impact enforcements. "The findings were striking," they wrote, noting Black boys became increasingly negatively affected as they grew older from age 9 to age 15. Their analysis showed exposure to Impact Zones for one school year accounted for one-fifth of the Black-White test score gap and also contributed to reducing school attendance by Black boys. "The findings show that Operation Impact lowered the educational performance of African-American boys, with implications for child development, economic mobility and racial inequality." 
+[<a href="#19">19</a>]</p>
+
+<p>A similar analysis performed the following year by Harvard's Andrew Bacher-Hicks and Elijah de la Campa found that those exposed to "stop-and-frisk" interactions - even indirectly through friends, family members, or teachers who were stopped - became inclined to suffer educational setbacks. The researchers found that stops among Black students "increases high school dropout likelihood by 6 percent, reduces college enrollment by 5 percent, and reduces college persistence after four semesters by 8 percent."
+[<a href="#20">20</a>]</p>
+
+<p>A working paper titled "School Finance Reform and the Distribution of Student Achievement" posted online by the Washington Center for Equitable Growth in 2016 found that increases in funding gradually raised the relative achievement of students in low-income school districts. [<a href="#21">21</a>] As Bacher-Hicks and de la Campa conclude in their analysis of New York City's "stop-and-frisk" effects, "because educational attainment is highly predictive of future earnings, these results imply that the racial disparities in police have broad implications for inequality in labor market outcomes and lifetime earnings." 
+[<a href="#22">22</a>]</p>
+
+<p>According to nationwide U.S. Bureau of Labor Statistics, college-educated workers' median earnings for bachelor's degrees in the third quarter of 2024 were higher by $50,000, or 130 percent, than those whose highest educational attainment below a high school diploma.
+[<a href="#23">23</a>]</p>
+
+<h3>Weekly Earnings by Educational Attainment (Q3 2024)</h3>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><th>EDUCATIONAL<br />ATTAINMENT</th>
+<th>First<br />decile</th>
+<th>First<br />quartile</th>
+<th>Median</th>
+<th>Third<br />quartile</th>
+<th>Ninth<br />decile</th>
+</tr>
+<tr><td>Less than a high school diploma</td><td>$465</td><td>$601</td><td>$734</td><td>$920</td><td>$1,257</td></tr>
+<tr><td>High school graduates, no college</td><td>$580</td><td>$710</td><td>$946</td><td>$1,331</td><td>$1,891</td></tr>
+<tr><td>Some college or associate degree</td><td>$615</td><td>$780</td><td>$1,053</td><td>$1,537</td><td>$2,096</td></tr>
+<tr><td>Bachelor's degree and higher</td><td>$832</td><td>$1,149</td><td>$1,697</td><td>$2,556</td><td>$3,844</td></tr>
+</table>
+
+<p><small>Source: U.S. Bureau of Labor Statistics</small></p>
+
+<p>Of the millions of people who were detained during the stop-and-frisk era, if only 1 in 100 of those experienced lower educational attainment due to this experience, that would leave 52,000 people earning less per year for their families. Even ignoring inflation and speaking only in nominal dollars, it is easy to see how quickly the difference of just one tier of educational attainment matters, comparing high school graduates to those without a diploma.</p>
+
+<p>Beyond educational and economic impacts, stop-and-frisk encounters created an unwarranted legal legacy for many individuals.</p>
+
+<p>Despite innocence, personally identifiable information resulting from such stops could and did remain in the police records of individuals, and these records stayed available for use in any future prosecutions. [<a href="#24">24</a>] This systematic disadvantage to those "with a stop record" created a new kind of legal binary - the targeted "stopped" and the privileged "not stopped" - and codified "the usual suspects" of mostly Black and Hispanic men into the NYPD's method of "predictive guilt."</p>
+
+<p>Jenn Rolnick Borchetta, a lawyer with The Bronx Defenders legal firm, led the move for a class-action lawsuit against the city over such "stop-and-frisk" records being used to track individuals. "It's not just Facebook and Google that have big data, it's also police departments around the country using it to train the spotlight of their suspicion," she said in 2019. "They're running their algorithms and their facial-recognition software on arrest records and mugshots that were supposed to have been destroyed."
+[<a href="#25">25</a>]</p>
+
+<p>These arguments halted broad SQF use by the NYPD on Sept. 5, 2019, after Judge Lyle E. Frank noted "likely tens of thousands" of people were being affected by their unwarranted stop records, adding that number might be "a conservative estimate."
+[<a href="#26">26</a>]</p>
+
+<a name="framework"></a>
+
+<h2>Toward a Framework for Further Study</h2>
+
+<p>Did the stop-and-frisk program directly contribute to reduced educational attainment among affected demographics? If so, how best can the Stop, Question, and Frisk impact on household earnings and lifetime incomes be quantified? How can policymakers ensure that similar programs are implemented equitably in the future?</p>
+
+<p>As stated earlier, these various correlations do not prove causation. Examining the direct consequences of the Stop, Question and Frisk program would require tracking individuals' stories at scale, something along the lines of how Jan Haldipur approached narratives in his book <em>No Place on the Corner: The Costs of Aggressive Policing</em>.
+
+<p>To establish a causal relationship between NYPD stop-and-frisk practices and educational attainment, the following steps will be necessary:</p>
+
+<ol>
+
+<li> Identify and control for potential confounding variables (e.g., income levels, employment rates, school funding, neighborhood crime rates).</li>
+
+<li> Use statistical methods (e.g., regression models) to account for confounding factors that might influence both policing practices and education.</li>
+
+<li> Gather longitudinal data on educational outcomes for individuals or communities affected by stop-and-frisk policies. This step would require case study analysis involving personally identifiable information, a feature outside the scope of this paper.</li>
+
+<li> Study the direct impacts of stop-and-frisk on individuals (e.g., stress, criminal records, school attendance) using surveys or interviews.</li>
+
+<li>Compare areas before and after policy changes against unaffected areas. Show that changes in stop-and-frisk practices occurred before any observed changes in educational attainment to establish temporal precedence.</li>
+
+<li> Use natural experiments, such as changes in policing policies or practices in specific neighborhoods, to observe impacts on educational outcomes.</li>
+
+<li> Identify variables correlated with stop-and-frisk practices but not directly with education (e.g., shifts in police leadership or policy mandates) to isolate causal effects. (See the case of NYPD Chief Jeffrey Maddrey mentioned above).</li>
+
+<li> Compare data and correlations with other urban municipalities where police have implemented aggressive stop-and-frisk policies (Philadelphia, Chicago, Los Angeles).</li>
+
+<li> Submit findings to rigorous peer review and replicate studies in other settings to confirm causality across contexts.</li>
+
+</ol>
+
+<p>There is already precedence for pursuing community remediation. Judge Scheindlin, in addition to ruling that the NYPD's use of stop-and-frisk had been unconstitutional, also granted <em>Davis v. City of New York</em> class-action status in challenging the use of discriminatory stops in Housing Authority buildings.
+[<a href="#27">27</a>]</p>
+
+<p>In future study, should a more clear casual link be demonstrated, it would also be possible to quantify harms and affect corrective policies. Whether this action took the form of compensation or community reinvestment initiatives in neighborhoods disproportionately targeted by the program, or simply legal assistance to help expunge individuals' records tied to stop-and-frisk encounters - especially when no crime was committed - it would represent a tangible step toward addressing the systemic inequities and restoring trust between affected communities and law enforcement institutions.</p>
+
+<a name="appendix"></a>
+
+<h2>Appendix: NYPD Precincts Snapshot</h2>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th width="25%">PRECINCT</th>
+<th width="55%">NEIGHBORHOODS</th>
+<th width="10%">NUM.&nbsp;SQF STOPS</th>
+<th width="10%">LOW EDUC. ATTAINMENT</th>
+</tr>
+<tr><td><strong>1st Precinct</strong></td><td>Manhattan:  World Trade Center, SOHO, Tribeca, Wall Street</td><td>11,099</td><td>3%</td></tr>
+<tr><td><strong>5th Precinct</strong></td><td>Manhattan: Chinatown, Little Italy, the Bowery</td><td>10,956</td><td>10%</td></tr>
+<tr><td><strong>6th Precinct</strong></td><td>Manhattan: Midtown South, Times Square, Penn Station</td><td>12,134</td><td>1%</td></tr>
+<tr><td><strong>7th Precinct</strong></td><td>Manhattan: Lower East Side</td><td>13,264</td><td>15%</td></tr>
+<tr><td><strong>9th Precinct</strong></td><td>Manhattan: East Village, Tompkins Square Park</td><td>19,838</td><td>4%</td></tr>
+<tr><td><strong>10th Precinct</strong></td><td>Manhattan:  Chelsea, Clinton/Hell's Kitchen South, Hudson Yards</td><td>10,195</td><td>5%</td></tr>
+<tr><td><strong>13th Precinct</strong></td><td>Manhattan: Midtown,  Peter Cooper Village/Stuyvesant Town, Union Square</td><td>16,515</td><td>3%</td></tr>
+<tr><td><strong>14th Precinct</strong></td><td>Manhattan: Midtown South, Times Square, Penn Station.</td><td>37,250</td><td>6%</td></tr>
+<tr><td><strong>17th Precinct</strong></td><td>Manhattan: Sutton Area, Beekman Place, Kipps Bay, Turtle Bay, Murray Hill, Rose Hill </td><td>6,314</td><td>1%</td></tr>
+<tr><td><strong>18th Precinct</strong></td><td>Manhattan: Midtown North, Diamond District, Theatre District, Rockefeller Plaza</td><td>11,732</td><td>4%</td></tr>
+<tr><td><strong>19th Precinct</strong></td><td>Manhattan: Upper East Side</td><td>17,399</td><td>5%</td></tr>
+<tr><td><strong>20th Precinct</strong></td><td>Manhattan: Upper West Side</td><td>15,423</td><td>4%</td></tr>
+<tr><td><strong>22nd Precinct</strong></td><td>Manhattan: Central Park</td><td>3,701</td><td>**</td></tr>
+<tr><td><strong>23rd Precinct</strong></td><td>Manhattan:  East Harlem/El Barrio</td><td>52,640</td><td>20%</td></tr>
+<tr><td><strong>24th Precinct</strong></td><td>Manhattan: Upper West Side, Manhattan Valley, Riverside Park</td><td>15,532</td><td>9%</td></tr>
+<tr><td><strong>25th Precinct</strong></td><td>Manhattan: East Harlem</td><td>31,993</td><td>25%</td></tr>
+<tr><td><strong>26th Precinct</strong></td><td>Manhattan: Upper West Side</td><td>17,400</td><td>4%</td></tr>
+<tr><td><strong>28th Precinct</strong></td><td>Manhattan: Central Harlem</td><td>26,052</td><td>20%</td></tr>
+<tr><td><strong>30th Precinct</strong></td><td>Manhattan: West Harlem, Hamilton Heights, Suger Hill</td><td>22,490</td><td>17%</td></tr>
+<tr><td><strong>32nd Precinct</strong></td><td>Manhattan: Northeastern Harlem</td><td>39,382</td><td>24%</td></tr>
+<tr><td><strong>33rd Precinct</strong></td><td>Manhattan: Washington Heights</td><td>18,378</td><td>20%</td></tr>
+<tr><td><strong>34th Precinct</strong></td><td>Manhattan: Washington Heights and Inwood</td><td>33,789</td><td>18%</td></tr>
+<tr><td><strong>40th Precinct</strong></td><td>Bronx: Port Morris, Mott Haven, Melrose</td><td>61,804</td><td>29%</td></tr>
+<tr><td><strong>41st Precinct</strong></td><td>Bronx: Hunts Point, Longwood</td><td>31,620</td><td>31%</td></tr>
+<tr><td><strong>42nd Precinct</strong></td><td>Bronx: Morrisania</td><td>36,918</td><td>30%</td></tr>
+<tr><td><strong>43rd Precinct</strong></td><td>Bronx: Southeast</td><td>45,032</td><td>26%</td></tr>
+<tr><td><strong>44th Precinct</strong></td><td>Bronx: Southwest, Yankee Stadium</td><td>51,908</td><td>27%</td></tr>
+<tr><td><strong>45th Precinct</strong></td><td>Bronx: Northeast, Co-Op City</td><td>16,614</td><td>12%</td></tr>
+<tr><td><strong>46th Precinct</strong></td><td>Bronx: Hunts Point, Longwood</td><td>35,396</td><td>28%</td></tr>
+<tr><td><strong>47th Precinct</strong></td><td>Bronx: Woodlawn, Wakefield, Williamsbridge, Baychester, Edenwald, Olinville, Fishbay, Woodlawn Cemetary</td><td>34,158</td><td>19%</td></tr>
+<tr><td><strong>48th Precinct</strong></td><td>Bronx: Belmont, East Tremont, West Farms</td><td>16,910</td><td>28%</td></tr>
+<tr><td><strong>49th Precinct</strong></td><td>Bronx: Allerton, Morris Park, Van Nest, Pelham Parkway, Eastchester Gardens, Pelham Gardens</td><td>26,970</td><td>17%</td></tr>
+<tr><td><strong>50th Precinct</strong></td><td>Bronx: Riverdale, Fieldston, Kingsbridge, Marble Hill, Spuyten Duyvil</td><td>9,267</td><td>11%</td></tr>
+<tr><td><strong>52nd Precinct</strong></td><td>Bronx: Bedford Park, Fordham, Kingsbridge, Norwood, Bronx Park, University Heights</td><td>37,496</td><td>22%</td></tr>
+<tr><td><strong>60th Precinct</strong></td><td>Brooklyn: Coney Island, Brighton Beach, West Brighton Beach, Sea Gate</td><td>33,933</td><td>18%</td></tr>
+<tr><td><strong>61st Precinct</strong></td><td>Brooklyn: Kings Bay, Gravesend, Sheepshead Bay, Manhattan Beach</td><td>22,857</td><td>10%</td></tr>
+<tr><td><strong>62nd Precinct</strong></td><td>Brooklyn: Bensonhurst, Mapleton, Bath Beach</td><td>18,567</td><td>13%</td></tr>
+<tr><td><strong>63rd Precinct</strong></td><td>Brooklyn: Marshlands near Floyd Bennett Field</td><td>14,687</td><td>10%</td></tr>
+<tr><td><strong>66th Precinct</strong></td><td>Brooklyn: Borough Park, Midwood, Kensington</td><td>13,972</td><td>18%</td></tr>
+<tr><td><strong>67th Precinct</strong></td><td>Brooklyn: East Flatbush, Remsen Village</td><td>43,639</td><td>14%</td></tr>
+<tr><td><strong>68th Precinct</strong></td><td>Brooklyn: Bay Ridge, Dyker Heights</td><td>10,308</td><td>13%</td></tr>
+<tr><td><strong>69th Precinct</strong></td><td>Brooklyn: Canarsie</td><td>22,838</td><td>13%</td></tr>
+<tr><td><strong>70th Precinct</strong></td><td>Brooklyn: Midwood, Fiske Terrace, Ditmas Park, Prospect Park South</td><td>39,767</td><td>13%</td></tr>
+<tr><td><strong>71st Precinct</strong></td><td>Brooklyn: Crown Heights, Wingate, Prospect Lefferts</td><td>22,665</td><td>14%</td></tr>
+<tr><td><strong>72nd Precinct</strong></td><td>Brooklyn: Sunset Park, Windsor Terrace</td><td>20,113</td><td>23%</td></tr>
+<tr><td><strong>73rd Precinct</strong></td><td>Brooklyn: Brownsville, Ocean Hill</td><td>77,549</td><td>24%</td></tr>
+<tr><td><strong>75th Precinct</strong></td><td>Brooklyn: East New York, Cypress Hills</td><td>93,220</td><td>21%</td></tr>
+<tr><td><strong>76th Precinct</strong></td><td>Brooklyn: Carroll Gardens, Red Hook, Cobble Hill, Gowanus</td><td>18,320</td><td>16%</td></tr>
+<tr><td><strong>77th Precinct</strong></td><td>Brooklyn: Crown Heights, Prospect Heights</td><td>37,527</td><td>16%</td></tr>
+<tr><td><strong>78th Precinct</strong></td><td>Brooklyn: Park Slope, Prospect Park</td><td>12,529</td><td>9%</td></tr>
+<tr><td><strong>79th Precinct</strong></td><td>Brooklyn: Bedford Stuyvesant</td><td>53,960</td><td>15%</td></tr>
+<tr><td><strong>81st Precinct</strong></td><td>Brooklyn: Bedford Stuyvesent, Stuyvesant Heights</td><td>37,955</td><td>20%</td></tr>
+<tr><td><strong>83rd Precinct</strong></td><td>Brooklyn: Bushwick</td><td>41,840</td><td>20%</td></tr>
+<tr><td><strong>84th Precinct</strong></td><td>Brooklyn: Brooklyn Heights, Boerum Hill, Vinegar Hill</td><td>18,072</td><td>4%</td></tr>
+<tr><td><strong>88th Precinct</strong></td><td>Brooklyn: Clinton Hill, Fort Green Park, Commodore Barry Park</td><td>23,881</td><td>11%</td></tr>
+<tr><td><strong>90th Precinct</strong></td><td>Brooklyn: Williamsburg</td><td>41,922</td><td>18%</td></tr>
+<tr><td><strong>94th Precinct</strong></td><td>Brooklyn: Greenpoint</td><td>7,401</td><td>8%</td></tr>
+<tr><td><strong>100th Precinct</strong></td><td>Queens: Rockaway Peninsula</td><td>15,320</td><td>13%</td></tr>
+<tr><td><strong>101st Precinct</strong></td><td>Queens: Far Rockaway, Bayswater</td><td>40,290</td><td>23%</td></tr>
+<tr><td><strong>102nd Precinct</strong></td><td>Queens: Kew Gardens, Richmond Hill East, Richmond Hill, Woodhaven, Ozone Park</td><td>29,395</td><td>14%</td></tr>
+<tr><td><strong>103rd Precinct</strong></td><td>Queens: Hollis, Lakewood, Jamaica</td><td>53,157</td><td>18%</td></tr>
+<tr><td><strong>104th Precinct</strong></td><td>Queens: Ridgewood, Glendale, Middle Village, Maspeth</td><td>22,213</td><td>11%</td></tr>
+<tr><td><strong>105th Precinct</strong></td><td>Queens: Queens Village, Cambria Heights, Bellerose, Glen Oaks, Floral Park, Bellaire </td><td>36,139</td><td>12%</td></tr>
+<tr><td><strong>106th Precinct</strong></td><td>Queens: Ozone Park, South Ozone Park, Lindenwood, Howard Beach, Old Howard Beach</td><td>30,704</td><td>14%</td></tr>
+<tr><td><strong>107th Precinct</strong></td><td>Queens: Fresh Meadows, Cunningham Heights, Hilltop Village</td><td>21,236</td><td>7%</td></tr>
+<tr><td><strong>108th Precinct</strong></td><td>Queens: Long Island City, Sunnyside, Woodside</td><td>18,237</td><td>13%</td></tr>
+<tr><td><strong>109th Precinct</strong></td><td>Queens: Downtown Flushing, East Flushing, Queensboro Hill, College Point, Malba, Whitestone, Beechhurst, Bay Terrace</td><td>38,612</td><td>11%</td></tr>
+<tr><td><strong>110th Precinct</strong></td><td>Queens: Corona, Elmhurst</td><td>38,275</td><td>21%</td></tr>
+<tr><td><strong>111th Precinct</strong></td><td>Queens: Bayside, Douglaston, Little Neck, Auburndale, Hollis Hills, Fresh Meadows</td><td>16,107</td><td>6%</td></tr>
+<tr><td><strong>112th Precinct</strong></td><td>Queens: Forest Hills, Rego Park</td><td>12,978</td><td>8%</td></tr>
+<tr><td><strong>113th Precinct</strong></td><td>Queens: Jamaica, St. Albans, Hollis, S. Ozone Park, Rochdale</td><td>35,262</td><td>16%</td></tr>
+<tr><td><strong>114th Precinct</strong></td><td>Queens: Astoria, Long Island City, Woodside, Jackson Heights</td><td>36,262</td><td>18%</td></tr>
+<tr><td><strong>115th Precinct</strong></td><td>Queens: Jackson Heights, East Elmhurst, North Corona, LaGuardia Airport</td><td>42,659</td><td>19%</td></tr>
+<tr><td><strong>120th Precinct</strong></td><td>Staten Island: North Shore</td><td>55,329</td><td>17%</td></tr>
+<tr><td><strong>121st Precinct</strong></td><td>Staten Island: Northwestern Shore </td><td>4,191</td><td>12%</td></tr>
+<tr><td><strong>122nd Precinct</strong></td><td>Staten Island: South Shore</td><td>26,988</td><td>9%</td></tr>
+<tr><td><strong>123rd Precinct</strong></td><td>Staten Island: South Shore</td><td>8,242</td><td>6%</td></tr>
+</table>
+<p><small><strong>NUM. SQF STOPS:</strong> Total number of recorded Stop, Question, and Frisk encounters between 2003 to 2022.<br />
+<strong>LOW EDUC. ATTAINMENT:</strong> Percentage of residents age 18 to 25 with a maximum educational attainment level below a high school diploma (or equivalent).</small></p>
+<p><strong>**</strong> Educational data for the 22nd Precinct (Central Park) have been omitted due to its lack of residential census.</p>
+
+<p><small>Source: New York City Police, NYC.gov, ACS</small></p>
+
+
+<a name="citations"></a>
+
+<h2>Citations</h2>
+
+<a name="1"></a>
+<p>[1] New York Civil Liberties Union (2022), "Stop-And-Frisk Data," <a href="https://www.nyclu.org/en/stop-and-frisk-data.">https://www.nyclu.org/en/stop-and-frisk-data</a>.</p>
+
+<a name="2"></a>
+<p>[2] <em>Floyd v. City of New York</em>, 959 F. Supp. 2d 540 - Dist. Court, SD New York 2013. <a href="https://law.justia.com/cases/federal/appellate-courts/ca2/13-3088/13-3088-2014-10-31.html">https://law.justia.com/cases/federal/appellate-courts/ca2/13-3088/13-3088-2014-10-31.html</a></p>
+
+<a name="3"></a>
+<p>[3] <em>Terry v. Ohio</em>, 392 U.S. 1 (1968). <a href="https://supreme.justia.com/cases/federal/us/392/1/#20">https://supreme.justia.com/cases/federal/us/392/1/#20</a></p>
+
+<a name="4"></a>
+<p>[4] Priar, L. L.; Martin, T. F. (1955). "Searching and Disarming Criminals," <em>Journal of Criminal Law & Criminology</em>, Vol. 45, Issue 4, p. 481. <a href="https://scholarlycommons.law.northwestern.edu/cgi/viewcontent.cgi?article=4291&context=jclc">https://scholarlycommons.law.northwestern.edu/cgi/viewcontent.cgi?article=4291&context=jclc</a></p>
+
+<a name="5"></a>
+<p>[5] Geller, Amanda; Fagan, Jeffery; Tyler, Tom; Link, Bruce G. (2014), "Aggressive Policing and the Mental Health of Young Urban Men," <em>The American Journal of Public Health</em>, December 2014, Vol. 104, No. 12, p. 2321.</p>
+
+<a name="6"></a>
+<p>[6] Vitale, Alex. <em>City of Disorder: How the Quality of Life Campaign Transformed New York Politics</em>. New York University Press, p. 47.
+
+<a name="7"></a>
+<p>[7] Haldipur, Jan (2019). <em>No Place on the Corner: The Costs of Agressive Policing</em>. New York University Press, p. 17.
+
+<a name="8"></a>
+<p>[8] NYC.gov, "NYC Safety and Security Operation Impact" (2008), <a href="https://www.nyc.gov/html/unccp/gprb/downloads/pdf/NYC_Safety%20and%20Security_Operation%20Impact.pdf">https://www.nyc.gov/html/unccp/gprb/downloads/pdf/NYC_Safety%20and%20Security_Operation%20Impact.pdf</a></p>
+
+<a name="9"></a>
+<p>[9] Daniels v. City of New York, 138 F. Supp. 2d 562 (S.D.N.Y. 2001). <a href="https://law.justia.com/cases/federal/district-courts/FSupp2/138/562/2462331/
+">https://law.justia.com/cases/federal/district-courts/FSupp2/138/562/2462331/</a></p>
+
+<a name="10"></a>
+<p>[10] Legewie, Joscha; Fagan, Jeffery (2019). "Aggressive Policing and the Educational Performance of Minority Youth," <em>American Sociological Review</em>, p. 9; <a href="https://osf.io/preprints/socarxiv/rdchf/">https://osf.io/preprints/socarxiv/rdchf/</a>.</p>
+
+<a name="11"></a>
+<p>[11] Goel, Sharad; Rao, Justin M.; Shroff, Ravi (2016), "Precinct or Prejudice? Understanding Racial Disparities in New York City's Stop-and-Frisk Policy," <em>The Annals of Applied Statistics</em> Vol. 10, No. 1, p. 377.</p>
+
+<a name="12"></a>
+<p>[12] Vitale, p. 123.
+
+<a name="13"></a>
+<p>[13] Bandes, Susan A.; Pryor, Marie; Kerrison, Erin; Atiba Goff, Phillip (2019), "The mismeasure of Terry stops: Assessing the psychological and emotional harms of stop and frisk to individuals and communities," <em>Behavioral Sciences & the Law</em>, Volume 37, Issue 2, p. 176.</p>
+
+<a name="14"></a>
+<p>[14] Legewie and Fagan, p. 2.</p>
+
+<a name="15"></a>
+<p>[15] Bandes, Susan A.; Pryor, Marie; Kerrison, Erin; Atiba Goff, Phillip (2019), "The mismeasure of Terry stops: Assessing the psychological and emotional harms of stop and frisk to individuals and communities," <em>Behavioral Sciences & the Law</em>, Volume 37, Issue 2, p. 176.</p>
+
+<a name="16"></a>
+<p>[16] Geller, Amanda; Fagan, Jeffery (2019). "Police Contact and the Legal Socialization of Urban Teens," RSF: The Russell Sage Foundation Journal of the Social Sciences, Vol. 5, No. 1, January 2019, p. 35. Project MUSE: <a href="https://muse.jhu.edu/article/720074">https://muse.jhu.edu/article/720074</a>.</p>
+
+<a name="17"></a>
+<p>[13] Geller and Fagan, p. 30.</p>
+
+<a name="18"></a>
+<p>[14] Geller and Fagan, p. 35.</p>
+
+<a name="19"></a>
+<p>[15] Legewie and Fagan, p. 2, 9, 16, 19, 24.
+
+<a name="20"></a>
+<p>[16] Bacher-Hicks, Andrew; de la Campa, Elijah (2020), "Social Costs of Proactive Policing: The Impact of NYC's Stop and Frisk Program on Educational Attainment" (working paper), p. 27.
+
+<a name="21"></a>
+<p>[17] Lafortune, Julien; Rothstein, Jesse; Schanzenbach, Diane (2016), "School Finance Reform and the Distribution of Student Achievement," Washington Center for Equitable Growth (working paper), p. 1; <a href="https://equitablegrowth.org/working-papers/school-finance-reform-and-the-distribution-of-student-achievement/">https://equitablegrowth.org/working-papers/school-finance-reform-and-the-distribution-of-student-achievement/</a>.
+
+<a name="22"></a>
+<p>[18] Bacher-Hicks, Andrew; de la Campa, Elijah (2020), "Social Costs of Proactive Policing: The Impact of NYC's Stop and Frisk Program on Educational Attainment" (working paper), p. 27.</p>
+
+<a name="23"></a>
+<p>[23] U.S. Bureau of Labor Statistics, "Quartiles and selected deciles of usual weekly earnings by educational attainment" for 3rd quarter 2024. <a href="https://www.bls.gov/charts/usual-weekly-earnings/usual-weekly-earnings-by-quartiles-and-selected-deciles-by-education.htm">https://www.bls.gov/charts/usual-weekly-earnings/usual-weekly-earnings-by-quartiles-and-selected-deciles-by-education.htm</a>.</p>
+
+<a name="24"></a>
+<p>[20] Benjamin, Ruha (2019). <em>Race After Technology: Abolitionist Tools for the New Jim Code</em>, p. 121.</p>
+
+<a name="25"></a>
+<p>[21] Hager, Eli (2019). "Your Arrest Was Dismissed. But It's Still In A Police Database," The Marshall Project; <a href="https://www.themarshallproject.org/2019/07/18/your-arrest-was-dismissed-but-it-s-still-in-a-police-database">https://www.themarshallproject.org/2019/07/18/your-arrest-was-dismissed-but-it-s-still-in-a-police-database</a>.</p>
+
+<a name="26"></a>
+<p>[22] Hager.
+
+<a name="27"></a>
+<p>[27] <em>Davis v City of New York</em>. <a href="https://law.justia.com/cases/new-york/other-courts/2005/2005-25407.html">https://law.justia.com/cases/new-york/other-courts/2005/2005-25407.html</a>.
+
+<a name="datarepository"></a>
+
+<h2>Data Repository</h2>
+
+<p>Github: <a href="https://github.com/pingstanton/nypdsqf">https://github.com/pingstanton/nypdsqf</a></p>
+
+<p>Dropbox: <a href="https://www.dropbox.com/scl/fo/4j5bvlgnsvkeim2ipt2r8/AL4buYDMJ4FmeZTTpvk1Rk4?rlkey=f87shv0msi436viwg8oe3t8fo&st=rzn5ewsq&dl=0">https://www.dropbox.com/scl/fo/4j5bvlgnsvkeim2ipt2r8/AL4buYDMJ4FmeZTTpvk1Rk4?rlkey=f87shv0msi436viwg8oe3t8fo&st=rzn5ewsq&dl=0</a></p>
+
+<p><em>First sources</em></p>
+
+<p>NYPD Stop, Question and Frisk Data: <a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page</a></p>
+
+<p>American Community Survey S1501 | Educational Attainment: <a href="https://data.census.gov/all?q=Educational%20Attainment">https://data.census.gov/all?q=Educational%20Attainment</a></p>
+
+<p><em>Special thank you</em></p>
+
+<p>John Keefe (Census to Precinct Mapping): <a href="https://github.com/jkeefe/census-by-precincts/tree/master/data/nyc">https://github.com/jkeefe/census-by-precincts/tree/master/data/nyc</a></p>
+
+<a name="bibliography"></a>
+
+<h2>Bibliography</h2>
+
+<p>Alexander, Michelle (2020). <em>The New Jim Crow: Mass Incarceration in the Age of Colorblindness</em>. New York: The New Press.</p>
+
+<p>Bacher-Hicks, Andrew; de la Campa, Elijah (2020), "Social Costs of Proactive Policing: The Impact of NYC's Stop and Frisk Program on Educational Attainment" (working paper).</p>
+
+<p>Bandes, Susan A.; Pryor, Marie; Kerrison, Erin; Atiba Goff, Phillip (2019), "The mismeasure of Terry stops: Assessing the psychological and emotional harms of stop and frisk to individuals and communities," <em>Behavioral Sciences & the Law</em>, Volume 37, Issue 2.</p>
+
+<p>Benjamin, Ruha (2019). <em>Race After Technology: Abolitionist Tools for the New Jim Code</em>. Polity.</p>
+
+<p>Correia, David, and Wall, Tyler (2022). <em>Police: A Field Guide (Second Edition)</em>. Brooklyn: Verso.</p>
+
+<p>D'Ignazio, Catherine, and Klein, Lauren F. (2020). <em>Data Feminism</em>. Cambridge, MA: The MIT Press.</p>
+
+<p><em>Floyd v. City of New York</em>, 959 F. Supp. 2d 540 - Dist. Court, SD New York 2013.</p>
+
+<p>Geller, Amanda; Fagan, Jeffery (2019). "Police Contact and the Legal Socialization of Urban Teens," <em>RSF: The Russell Sage Foundation Journal of the Social Sciences</em>, Vol. 5, No. 1, January 2019. Project MUSE: <a href="https://muse.jhu.edu/article/720074">https://muse.jhu.edu/article/720074</a></p>
+
+<p>Geller, Amanda; Fagan, Jeffery; Tyler, Tom; Link, Bruce G. (2014), "Aggressive Policing and the Mental Health of Young Urban Men," <em>The American Journal of Public Health</em>, December 2014, Vol. 104, No. 12.</p>
+
+<p>Goel, Sharad; Rao, Justin M.; Shroff, Ravi (2016), "Precinct or Prejudice? Understanding Racial Disparities in New York City's Stop-and-Frisk Policy," <em>The Annals of Applied Statistics Vol. 10</em>, No. 1.</p>
+
+<p>Hager, Eli (2019). "Your Arrest Was Dismissed. But It's Still In A Police Database," The Marshall Project; <a href="https://www.themarshallproject.org/2019/07/18/your-arrest-was-dismissed-but-it-s-still-in-a-police-database">https://www.themarshallproject.org/2019/07/18/your-arrest-was-dismissed-but-it-s-still-in-a-police-database</a>.</p>
+
+<p>Haldipur, Jan (2019). <em>No Place On The Corner: The Costs of Aggressive Policing.</em> New York: New York University Press.</p>
+
+<p>Hood, Quinn (2008). "Stop, Question, and Frisk Visualized," NYC OpenData. <a href="https://opendata.cityofnewyork.us/projects/stop-question-and-frisk-visualized/">https://opendata.cityofnewyork.us/projects/stop-question-and-frisk-visualized/</a> | <a href="https://qhood01.github.io/nycSQF/">https://qhood01.github.io/nycSQF/</a>.</p>
+
+<p>International Monetary Fund World Economic Outlook Database, <a href="https://www.imf.org/en/Publications/WEO/weo-database/2022/October/weo-report">https://www.imf.org/en/Publications/WEO/weo-database/2022/October/weo-report</a></p>
+
+<p>IPUMS USA U.S. Census Data for Social, Economics, and Health Research, <a href="https://usa.ipums.org/usa/">https://usa.ipums.org/usa/</a>.</p>
+
+<p>Keefe, John (2022). "Sharing NYC Police Precinct Data." <a href="https://johnkeefe.net/nyc-police-precinct-and-census-data">https://johnkeefe.net/nyc-police-precinct-and-census-data</a></p>
+
+<p>Lafortune, Julien; Rothstein, Jesse; Schanzenbach, Diane (2016), "School Finance Reform and the Distribution of Student Achievement," Washington Center for Equitable Growth (working paper). <a href="https://equitablegrowth.org/working-papers/school-finance-reform-and-the-distribution-of-student-achievement/">https://equitablegrowth.org/working-papers/school-finance-reform-and-the-distribution-of-student-achievement/</a>.</p>
+
+<p>Legewie, Joscha; Fagan, Jeffery (2019). "Aggressive Policing and the Educational Performance of Minority Youth," <em>American Sociological Review</em>. <a href="https://osf.io/preprints/socarxiv/rdchf">https://osf.io/preprints/socarxiv/rdchf/</a>.</p>
+
+<p>New York Civil Liberties Union (2022), "Stop-And-Frisk Data." <a href="https://www.nyclu.org/en/stop-and-frisk-data">https://www.nyclu.org/en/stop-and-frisk-data</a>.</p>
+
+<p>NYC Department of City Planning | Population Division (2021). "2020 Census Reconfiguration of Statistical Geographies: A Guide for New York City." <a href="https://storymaps.arcgis.com/stories/d30850ba28944619b94e8ee4f746d5c4">https://storymaps.arcgis.com/stories/d30850ba28944619b94e8ee4f746d5c4</a></p>
+
+<p>NYC.gov, "NYC Safety and Security Operation Impact" (2008). <a href="https://www.nyc.gov/html/unccp/gprb/downloads/pdf/NYC_Safety%20and%20Security_Operation%20Impact.pdf">https://www.nyc.gov/html/unccp/gprb/downloads/pdf/NYC_Safety%20and%20Security_Operation%20Impact.pdf</a>.</p>
+
+<p>Maher, Geo (2021). <em>A World Without Police: How Strong Communities Make Cops Obsolete.</em> Brooklyn: Verso.</p>
+
+<p>Packard, Samuel; Verzani, Zoe; Finsaas, Megan; Levy, Natalie S.; Shefner, Ruth; Planey, Arrianna M; Boehme, Amelia K.; Prins, Seth J. (2024). "Maintaining disorder: estimating the association between policing and psychiatric hospitalization among youth in New York City by neighborhood racial composition, 2006-2014," <em>Social Psychiatry and Psychiatric Epidemiology</em>. <a href="https://doi.org/10.1007/s00127-024-02738-7">https://doi.org/10.1007/s00127-024-02738-7</a>.
+
+<p>Priar, L. L.; Martin, T. F. (1955). "Searching and Disarming Criminals," <em>Journal of Criminal Law & Criminology</em>, Vol. 45, Issue 4. <a href="https://scholarlycommons.law.northwestern.edu/cgi/viewcontent.cgi?article=4291&context=jclc">https://scholarlycommons.law.northwestern.edu/cgi/viewcontent.cgi?article=4291&context=jclc</a></p>
+
+<p>Vitale, Alex S (2021). <em>The End of Policing (Updated Edition)</em>. Brooklyn: Verso.</p>
+
+<p>Vitale, Alex S (2008). <em>City Of Disorder: How the Quality of Life Campaign Transformed New York Politics</em>. New York: New York University Press.</p>
+
+<p><em>Terry v. Ohio</em>, 392 U.S. 1 (1968). <a href="https://supreme.justia.com/cases/federal/us/392/1/#20">https://supreme.justia.com/cases/federal/us/392/1/#20</a>.</p>
+
+<p>U.S. Bureau of Labor Statistics, "Quartiles and selected deciles of usual weekly earnings by educational attainment" for 3rd quarter 2024. <a href="https://www.bls.gov/charts/usual-weekly-earnings/usual-weekly-earnings-by-quartiles-and-selected-deciles-by-education.htm">https://www.bls.gov/charts/usual-weekly-earnings/usual-weekly-earnings-by-quartiles-and-selected-deciles-by-education.htm</a></p>
+
+<a name="photocredit"></a>
+<h2>Photo Credits</h2>
+
+<p>New York City Subway Station, W 4 St-Washington Sq, July 17, 2017. &copy; Matthew Stanton. <a href="https://pingstanton.com/nypdsqf/hed.jpg">https://pingstanton.com/nypdsqf/hed.jpg</a></p>
+
+</div></body>
+</html>
