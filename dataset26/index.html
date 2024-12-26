@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>dataset26</title>
+<style>
+body {margin: 0; padding: 30px; font: normal 1.1em/1.2em courier, 'courier new', monospace; color: #000; background-color: #fff;}
+</style>
+</head>
+<body>
+
+<h2>Data Sources</h2>
+
+<p><strong>American Community Survey</strong><br />
+S1501 Educational Attainment 2010-2023<br />
+by NYC Census Tracts<br />
+<a href="https://data.census.gov/">https://data.census.gov/</a></p>
+
+<p><strong>NYC.gov New York City Police Department</strong><br />
+NYPD Stop, Question, and Frisk Data<br />
+<a href="https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page">https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page</a></p>
+
+<p>Education data from census tracts (2010, 2020 boundaries) were grouped into Precincts (defined by 2024 boundaries). In terms of inconsistencies between 2010 to 2020 census tracts, in most cases the change involved splitting the tract into two or more parts from a previous tract, not changing its associated NYPD Precinct. The major exception to this rule is found on Staten Island, where the 121st Precinct was created in 2013. Census tracts that were divided by boundries were grouped into the precinct of greatest area. For an illustrative guide, see: <a href="https://pingstanton.com/nypdsqf/mapCensusTractsPrecincts.htm">https://pingstanton.com/nypdsqf/mapCensusTractsPrecincts.htm</a></p>
+
+<h2>Cleaned Data Files</h2>
+
+<p><a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEduAll.zip"><strong>nypdsqfEduAll.zip</strong></a></p>
+
+<p><a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqf2003.csv">nypdsqf2003.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqf2004.csv">nypdsqf2004.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqf2005.csv">nypdsqf2005.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqf2006.csv">nypdsqf2006.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqf2007.csv">nypdsqf2007.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqf2008.csv">nypdsqf2008.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqf2009.csv">nypdsqf2009.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2010.csv">nypdsqfEdu2010.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2011.csv">nypdsqfEdu2011.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2012.csv">nypdsqfEdu2012.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2013.csv">nypdsqfEdu2013.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2014.csv">nypdsqfEdu2014.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2015.csv">nypdsqfEdu2015.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2016.csv">nypdsqfEdu2016.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2017.csv">nypdsqfEdu2017.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2018.csv">nypdsqfEdu2018.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2019.csv">nypdsqfEdu2019.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2020.csv">nypdsqfEdu2020.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2021.csv">nypdsqfEdu2021.csv</a><br />
+<a href="https://pingstanton.com/nypdsqf/dataset26/nypdsqfEdu2022.csv">nypdsqfEdu2022.csv</a></p>
+
+<h2>Data Dictionary/Codebook</h2>
+
+<p>YEAR (year of collected data)<br />
+PRECINCT (NYPD precinct of reported incident)<br />
+SQF_SEXF (sex: female)<br />
+SQF_SEXM (sex: male)<br />
+SQF_SEXZ (sex: other or unlisted)<br />
+SQF_RACEASIAN (race: Asian)<br />
+SQF_RACEBLACK (race: Black)<br />
+SQF_RACENATIVE (race: Native American/Indigenous)<br />
+SQF_RACEHISPB (race: Hispanic/Black)<br />
+SQF_RACEHISPW (race: Hispanic/White)<br />
+SQF_RACEUNK1 (race: unknown or unlisted)<br />
+SQF_RACEWHITE (race: White)<br />
+SQF_RACEUNK2 (race: unknown or unlisted)<br />
+SQF_RACEOTHER (race: other)<br />
+SQF_AGE0_17 (bin created for age: 17 or younger)<br />
+SQF_AGE18_24 (bin created for age: 18 to age: 24)<br />
+SQF_AGE25_34 (bin created for age: 25 to age: 34)<br />
+SQF_AGE35_44 (bin created for age: 35 to age: 44)<br />
+SQF_AGE45_64 (bin created for age: 45 to age: 64)<br />
+SQF_AGE65_older (bin created for age: 65 or older)<br />
+POP_AGE18_24 (age: 18 to 24)<br />
+POP_AGE18_24_M (age: 18 to 24, sex: male)<br />
+POP_AGE18_24_F (age: 18 to 24, sex: female)<br />
+POP_25OVER (age: 25 or older)<br />
+POP_25OVER_M (age: 25 or older, sex: male)<br />
+POP_25OVER_F (age: 25 or older, sex: female)<br />
+UNDERHS_AGE18to24 (max. educational attainment: under 9th grade, ages: 18-24)<br />
+GRAD_AGE18to24 (max. educational attainment: high school graduate, ages: 18-24)<br />
+COLLEGE_AGE18to24 (max. educational attainment: some college, no degree, ages: 18-24)<br />
+BACHELORS_AGE18to24 (max. educational attainment: bachelor's degree or higher, ages: 18-24)<br />
+UNDERHS_AGE18to24_M (max. educational attainment: under 9th grade, ages: 18-24, sex: male)<br />
+GRAD_AGE18to24_M (max. educational attainment: high school graduate, ages: 18-24, sex: male)<br />
+COLLEGE_AGE18to24_M (max. educational attainment: some college, no degree, ages: 18-24, sex: male)<br />
+BACHELORS_AGE18to24_M (max. educational attainment: bachelor's degree or higher, ages: 18-24, sex: male)<br />
+UNDERHS_AGE18to24_F (max. educational attainment: under 9th grade, ages: 18-24, sex: female)<br />
+GRAD_AGE18to24_F (max. educational attainment: high school graduate, ages: 18-24, sex: female)<br />
+COLLEGE_AGE18to24_F (max. educational attainment: some college, no degree, ages: 18-24, sex: female)<br />
+BACHELORS_AGE18to24_F (max. educational attainment: bachelor's degree or higher, ages: 18-24, sex: female)<br />
+UNDER9th_25OVER_M (max. educational attainment: under 9th grade, ages: 25 or older, sex: male)<br />
+UNDERHS_25OVER_M (max. educational attainment: high school, no graduation, ages: 25 or older, sex: male)<br />
+GRAD_25OVER_M (max. educational attainment: high school degree or equivalent, ages: 25 or older, sex: male)<br />
+COLLEGE_25OVER_M (max. educational attainment: some college, ages: 25 or older, sex: male)<br />
+BACHELORS_25OVER_M (max. educational attainment: bachelor's degree or higher, ages: 25 or older, sex: male)<br />
+UNDER9th_25OVER_F (max. educational attainment: under 9th grade, ages: 25 or older, sex: female)<br />
+UNDERHS_25OVER_F (max. educational attainment: high school, no graduation, ages: 25 or older, sex: female)<br />
+GRAD_25OVER_F (max. educational attainment: high school degree or equivalent, ages: 25 or older, sex: female)<br />
+COLLEGE_25OVER_F (max. educational attainment: some college, ages: 25 or older, sex: female)<br />
+BACHELORS_25OVER_F (max. educational attainment: bachelor's degree or higher, ages: 25 or older, sex: female)</p>
+
+<h3>Python Notebook</h3>
+
+<p>Via Google Colab: <a href="https://colab.research.google.com/drive/1Hqwdg6Fc4YCUHCQme7TyvYCpppK3ycDu?usp=sharing">https://colab.research.google.com/drive/1Hqwdg6Fc4YCUHCQme7TyvYCpppK3ycDu?usp=sharing</a></p>
+
+<p>Download: <a href="capstn_edu_impacts_nypd_stop_and_frisk.py">.py</a>&nbsp;|
+<a href="Capstn_Edu_Impacts_NYPD_Stop_and_Frisk.ipynb">.ipynb</a></p>
+
+
+</body>
+</html>
