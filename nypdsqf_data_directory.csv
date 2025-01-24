@@ -1,0 +1,49 @@
+﻿NAME,DESCRIPTION,DATA TYPE,SOURCE,SOURCE URL
+YEAR,year of collected data,integer (qualitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+PRECINCT,NYPD precinct of reported incident,integer (qualitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_SEXF,sex: female,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_SEXM,sex: male,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_SEXZ,sex: other or unlisted,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEASIAN,race: Asian,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEBLACK,race: Black,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACENATIVE,race: Native American/Indigenous,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEHISPB,race: Hispanic/Black,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEHISPW,race: Hispanic/White,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEUNK1,race: unknown or unlisted,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEWHITE,race: White,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEUNK2,race: unknown or unlisted,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_RACEOTHER,race: other,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_AGE0_17,bin created for age: 17 or younger,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_AGE18_24,bin created for age: 18 to age: 24,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_AGE25_34,bin created for age: 25 to age: 34,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_AGE35_44,bin created for age: 35 to age: 44,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_AGE45_64,bin created for age: 45 to age: 64,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+SQF_AGE65_older,bin created for age: 65 or older,integer (quantitative),"NYPD Stop, Question, and Frisk Data",https://www.nyc.gov/site/nypd/stats/reports-analysis/stopfrisk.page
+POP_AGE18_24,age: 18 to 24,integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+POP_AGE18_24_M,"age: 18 to 24, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+POP_AGE18_24_F,"age: 18 to 24, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+POP_25OVER,age: 25 or older,integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+POP_25OVER_M,"age: 25 or older, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+POP_25OVER_F,"age: 25 or older, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+UNDERHS_AGE18to24,"max. educational attainment: under 9th grade, ages: 18-24",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+GRAD_AGE18to24,"max. educational attainment: high school graduate, ages: 18-24",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+COLLEGE_AGE18to24,"max. educational attainment: some college, no degree, ages: 18-24",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+BACHELORS_AGE18to24,"max. educational attainment: bachelor's degree or higher, ages: 18-24",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+UNDERHS_AGE18to24_M,"max. educational attainment: under 9th grade, ages: 18-24, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+GRAD_AGE18to24_M,"max. educational attainment: high school graduate, ages: 18-24, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+COLLEGE_AGE18to24_M,"max. educational attainment: some college, no degree, ages: 18-24, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+BACHELORS_AGE18to24_M,"max. educational attainment: bachelor's degree or higher, ages: 18-24, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+UNDERHS_AGE18to24_F,"max. educational attainment: under 9th grade, ages: 18-24, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+GRAD_AGE18to24_F,"max. educational attainment: high school graduate, ages: 18-24, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+COLLEGE_AGE18to24_F,"max. educational attainment: some college, no degree, ages: 18-24, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+BACHELORS_AGE18to24_F,"max. educational attainment: bachelor's degree or higher, ages: 18-24, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+UNDER9th_25OVER_M,"max. educational attainment: under 9th grade, ages: 25 or older, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+UNDERHS_25OVER_M,"max. educational attainment: high school, no graduation, ages: 25 or older, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+GRAD_25OVER_M,"max. educational attainment: high school degree or equivalent, ages: 25 or older, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+COLLEGE_25OVER_M,"max. educational attainment: some college, ages: 25 or older, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+BACHELORS_25OVER_M,"max. educational attainment: bachelor's degree or higher, ages: 25 or older, sex: male",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+UNDER9th_25OVER_F,"max. educational attainment: under 9th grade, ages: 25 or older, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+UNDERHS_25OVER_F,"max. educational attainment: high school, no graduation, ages: 25 or older, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+GRAD_25OVER_F,"max. educational attainment: high school degree or equivalent, ages: 25 or older, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+COLLEGE_25OVER_F,"max. educational attainment: some college, ages: 25 or older, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
+BACHELORS_25OVER_F,"max. educational attainment: bachelor's degree or higher, ages: 25 or older, sex: female",integer (quantitative),American Community Survey S1501 Educational Attainment 2010-2023,https://data.census.gov/
